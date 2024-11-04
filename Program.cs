@@ -40,6 +40,11 @@ var methods = string.Join(Environment.NewLine, strings.Select(static (p) => $$""
     [BenchmarkCategory("{{p.Key}}"), Benchmark]
     public void Ldsfld_{{p.Key}}() => TakeString(Generated.s_{{p.Key}});
 
+    [BenchmarkCategory("{{p.Key}}-init"), Benchmark]
+    public string Init_{{p.Key}}() => Encoding.UTF8.GetString("""
+    {{p.Value}}
+    """u8);
+
     """"));
 
 var fields = string.Join(Environment.NewLine, strings.Select(static (p) => $$""""
